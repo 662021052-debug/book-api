@@ -12,6 +12,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+import bookRoute from './routes/bookRoutes.js'
+app.use('/api/books', bookRoute);
+
 const PORT = process.env.PORT || 3000; 
 
 
