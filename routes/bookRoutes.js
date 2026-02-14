@@ -1,14 +1,16 @@
 import express from 'express'
 const router = express.Router();
 
-import { addBook, deleteBook, showBookId, showBooks,editBook  } from '../controllers/bookController.js'
+import { addBook, deleteBook, showBookId, showBooks, editBook } from '../controllers/bookController.js'
+import authenticateToken  from '../middlewares/auth.js';
 
 
-router.get('/', showBooks);
-router.get('/:id', showBookId);
-router.post('/', addBook);
-router.put('/:id', editBook);
-router.delete('/:id', deleteBook);
+
+router.get('/', authenticateToken, showBooks);
+router.get('/:id', authenticateToken, showBookId);
+router.post('/', authenticateToken, addBook);
+router.put('/:id', authenticateToken, editBook);
+router.delete('/:id', authenticateToken, deleteBook);
 
 export default router;
 
